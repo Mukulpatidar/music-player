@@ -4,7 +4,7 @@ import {
   ResizablePanelGroup,
 } from "@/components/ui/resizable";
 import { Outlet } from "react-router-dom";
-import LeftSideBar from "./components/LeftSideBar";
+import LeftSideBar from "./components/LeftSidebar";
 import FriendsActivity from "./components/RightSidebar";
 import { useEffect, useState } from "react";
 import AudioPlayer from "./components/AudioPlayer";
@@ -53,7 +53,7 @@ const MainLayout = () => {
             maxSize={22}
             onResize={setPanelSize}
           >
-            <LeftSideBar panelSize={panelSize} />
+            <LeftSidebar panelSize={panelSize} />
            
           </ResizablePanel>
            <ResizableHandle className="w-2 bg-black rounded-lg transition-colors" />
