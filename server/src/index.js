@@ -68,14 +68,20 @@ app.use((error, req, res, next) => {
   });
 });
 
-export default app;
-
 const isDirectRun = process.argv[1] === fileURLToPath(import.meta.url);
 
+if (!isDirectRun && process.env.NODE_ENV !== 'test') {
+    await connectDB();
+}
+
+export default app;
+
 if (isDirectRun && process.env.NODE_ENV !== 'test') {
-  validateEnv();
-  app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
-    connectDB();
-  });
+    validateEnv();
+
+    connectDB().then(() => {
+        app.listen(PORT, () => {
+            console.log(`Server is running on http://localhost:${PORT}`);
+        });
+    });
 }
